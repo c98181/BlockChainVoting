@@ -1,0 +1,19 @@
+{
+    "name": "voting-dapp",
+    "version": "1.0.0",
+    "description": "A decentralized application for creating and participating in voting sessions.",
+    "main": "truffle-config.js",
+    "scripts": {
+        "test": "truffle test",
+        "start": "http-server src -c-1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@truffle/contract": "^4.6.31",
+        "web3": "^1.3.5"
+    },
+    "devDependencies": {
+        "http-server": "^0.12.3"
+    }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vote</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Vote</h1>
+  <div id="accountAddress"></div>
+  <form id="voteForm">
+    <div>
+      <label for="sessionID">Session ID:</label>
+      <input type="number" id="sessionID" name="sessionID" required>
+    </div>
+    <button type="button" onclick="App.loadSession()">Load Session</button>
+  </form>
+  <div id="sessionInfo"></div>
+  <div id="candidates"></div>
+  <button id="voteButton" onclick="App.vote()" disabled>Vote</button>
+  <div id="msg"></div>
+  <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+  <script src="js/bundleVote.js"></script>
+</body>
+</html>

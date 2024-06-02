@@ -1,4 +1,5 @@
-const TruffleContract = require('@truffle/contract');
+const Web3 = require('web3');
+const contract = require('@truffle/contract');
 
 window.App = {
   start: async function() {
@@ -19,11 +20,11 @@ window.App = {
 
     const response = await fetch('/build/contracts/Voting.json');
     const votingArtifacts = await response.json();
-    const VotingContract = TruffleContract(votingArtifacts);
+    const VotingContract = contract(votingArtifacts);
     VotingContract.setProvider(App.web3Provider);
 
     App.account = (await window.web3.eth.getAccounts())[0];
-    document.getElementById("accountAddress").innerText = "Your Account: " + App.account;
+    document.getElementById("account").innerText = App.account;
 
     App.contracts = {};
     App.contracts.Voting = VotingContract;
@@ -31,46 +32,47 @@ window.App = {
       from: App.account,
       gas: 6654755
     });
+
+    document.getElementById("loadSessionButton").addEventListener("click", App.loadSession);
+    document.getElementById("voteButton").addEventListener("click", App.vote);
   },
 
   loadSession: async function() {
     const sessionID = document.getElementById("sessionID").value;
+    if (!sessionID) {
+      alert("Please enter a session ID.");
+      return;
+    }
 
     const instance = await App.contracts.Voting.deployed();
-    try {
-      console.log(`Loading session with ID: ${sessionID}`);
-      const dates = await instance.getDates(sessionID);
-      console.log(`Session dates: ${dates}`);
-      const countCandidates = await instance.getCountCandidates(sessionID);
-      console.log(`Count of candidates: ${countCandidates}`);
-      const admin = await instance.getAdmin(sessionID);
-      console.log(`Admin address: ${admin}`);
+    const dates = await instance.getDates(sessionID);
+    const countCandidates = await instance.getCountCandidates(sessionID);
+    const admin = await instance.getAdmin(sessionID);
 
-      const startDate = new Date(dates[0] * 1000);
-      const endDate = new Date(dates[1] * 1000);
+    const startDate = new Date(dates[0] * 1000);
+    const endDate = new Date(dates[1] * 1000);
 
-      document.getElementById("sessionInfo").innerText = `Admin: ${admin}\nStart Date: ${startDate}\nEnd Date: ${endDate}`;
+    document.getElementById("admin").innerText = admin;
+    document.getElementById("startDate").innerText = startDate.toString();
+    document.getElementById("endDate").innerText = endDate.toString();
 
-      let candidatesHtml = '<table>';
-      candidatesHtml += '<thead><tr><th>Candidate</th><th>Party</th><th>Votes</th></tr></thead><tbody>';
+    const candidatesTable = document.getElementById("candidates");
+    candidatesTable.innerHTML = ""; // Clear existing candidates
 
-      for (let i = 1; i <= countCandidates; i++) {
-        const candidate = await instance.getCandidate(sessionID, i);
-        console.log(`Candidate ${i}: ${candidate}`);
-        candidatesHtml += `<tr>
-          <td><input type="radio" name="candidate" value="${candidate[0]}">${candidate[1]}</td>
-          <td>${candidate[2]}</td>
-          <td>${candidate[3]}</td>
-        </tr>`;
-      }
+    for (let i = 1; i <= countCandidates; i++) {
+      const candidate = await instance.getCandidate(sessionID, i);
+      const candidateName = candidate[1].replace(/^\[|]$/g, ''); // Remove surrounding brackets
+      const partyName = candidate[2].replace(/^\[|]$/g, ''); // Remove surrounding brackets
+      const totalVotes = candidate[3];
 
-      candidatesHtml += '</tbody></table>';
-      document.getElementById("candidates").innerHTML = candidatesHtml;
-
-      document.getElementById("voteButton").disabled = false;
-    } catch (err) {
-      console.error("Error loading session:", err);
-      alert("Error loading session.");
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${candidateName}</td>
+        <td>${partyName}</td>
+        <td>${totalVotes}</td>
+        <td><input type="radio" name="candidate" value="${candidate[0]}"></td>
+      `;
+      candidatesTable.appendChild(row);
     }
   },
 
@@ -78,16 +80,15 @@ window.App = {
     const sessionID = document.getElementById("sessionID").value;
     const candidateID = document.querySelector("input[name='candidate']:checked").value;
 
-    if (!candidateID) {
-      document.getElementById("msg").innerText = "Please vote for a candidate.";
+    if (!sessionID || !candidateID) {
+      alert("Please select a candidate to vote.");
       return;
     }
 
     const instance = await App.contracts.Voting.deployed();
     try {
-      const result = await instance.vote(sessionID, candidateID);
-      document.getElementById("voteButton").disabled = true;
-      document.getElementById("msg").innerText = "Voted successfully!";
+      await instance.vote(sessionID, candidateID, { from: App.account });
+      alert("Voted successfully!");
     } catch (err) {
       console.error("Error voting:", err);
       alert("Error voting.");
@@ -96,5 +97,5 @@ window.App = {
 };
 
 window.addEventListener("load", function() {
-  window.App.start();
+  App.start();
 });

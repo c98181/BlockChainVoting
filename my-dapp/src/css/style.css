@@ -1,93 +1,63 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  h1, h2, h3 {
-    color: #333;
-  }
-  
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 30px;
-  }
-  
-  #accountAddress {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-  }
-  
-  form div {
-    margin-bottom: 10px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    color: #555;
-  }
-  
-  input[type="text"],
-  input[type="datetime-local"],
-  input[type="number"],
-  button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #5cb85c;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #4cae4c;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  #msg {
-    margin-top: 20px;
-    color: #d9534f;
-  }
-  
-  #sessionInfo {
-    margin-top: 20px;
-    font-size: 1.1em;
-  }
-  
-  #candidates {
-    margin-top: 20px;
-  }
-  
-  input[type="radio"] {
-    margin-right: 10px;
-  }
-  
+  background-image: url('../background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 20px;
+  font-size: 2.5em;
+  color: #ffcc00;
+}
+
+form {
+  background-color: rgba(0, 0, 0, 0.9); /* 透明背景 */
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: center; /* 左对齐文本内容 */
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  color: #ffcc00;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="datetime-local"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  display: block; /* 使按钮成为块级元素 */
+  margin: 20px auto 0 auto; /* 将按钮置中 */
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#accountAddress {
+  margin-top: 10px;
+  font-size: 1.2em;
+  color: #ffcc00;
+}

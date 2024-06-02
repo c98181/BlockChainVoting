@@ -7,31 +7,37 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Create Voting Session</h1>
-  <div id="accountAddress"></div>
-  <form id="createSessionForm">
-    <div>
-      <label for="candidateNames">Candidate Names (comma separated):</label>
-      <input type="text" id="candidateNames" name="candidateNames" required>
-    </div>
-    <div>
-      <label for="candidateParties">Candidate Parties (comma separated):</label>
-      <input type="text" id="candidateParties" name="candidateParties" required>
-    </div>
-    <div>
-      <label for="voters">Voter Addresses (comma separated):</label>
-      <input type="text" id="voters" name="voters" required>
-    </div>
-    <div>
-      <label for="startDate">Start Date:</label>
-      <input type="datetime-local" id="startDate" name="startDate" required>
-    </div>
-    <div>
-      <label for="endDate">End Date:</label>
-      <input type="datetime-local" id="endDate" name="endDate" required>
-    </div>
-    <button type="submit">Create Session</button>
-  </form>
+  <div>
+    <form id="createSessionForm">
+      <h1>Create Voting Session</h1>
+      <div id="accountAddress"></div>
+      <b/>
+      <b/>
+      <b/>
+      <b/>
+      <div>
+        <label for="candidateNames">Candidate Names (comma separated):</label>
+        <input type="text" id="candidateNames" name="candidateNames" required>
+      </div>
+      <div>
+        <label for="candidateParties">Candidate Parties (comma separated):</label>
+        <input type="text" id="candidateParties" name="candidateParties" required>
+      </div>
+      <div>
+        <label for="voters">Voter Addresses (comma separated):</label>
+        <input type="text" id="voters" name="voters" required>
+      </div>
+      <div>
+        <label for="startDate">Start Date:</label>
+        <input type="datetime-local" id="startDate" name="startDate" required>
+      </div>
+      <div>
+        <label for="endDate">End Date:</label>
+        <input type="datetime-local" id="endDate" name="endDate" required>
+      </div>
+      <button type="submit">Create Session</button>
+    </form>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
   <script src="js/bundleCreateSession.js"></script>
 </body>

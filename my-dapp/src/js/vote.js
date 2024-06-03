@@ -48,21 +48,35 @@ window.App = {
     const dates = await instance.getDates(sessionID);
     const countCandidates = await instance.getCountCandidates(sessionID);
     const admin = await instance.getAdmin(sessionID);
+    const sessionName = await instance.getSessionName(sessionID);
+    const condition = await instance.getCondition(sessionID);
 
     const startDate = new Date(dates[0] * 1000);
     const endDate = new Date(dates[1] * 1000);
 
+    const currentTime = new Date();
+    let status;
+    if (currentTime < startDate) {
+      status = "Not Yet";
+    } else if (currentTime > endDate) {
+      status = "End";
+    } else {
+      status = "In Process";
+    }
+
     document.getElementById("admin").innerText = admin;
     document.getElementById("startDate").innerText = startDate.toString();
     document.getElementById("endDate").innerText = endDate.toString();
+    document.getElementById("sessionName").innerText = sessionName;
+    document.getElementById("condition").innerText = status;
 
-    const candidatesTable = document.getElementById("candidates");
+    const candidatesTable = document.getElementById("candidateRows");
     candidatesTable.innerHTML = ""; // Clear existing candidates
 
     for (let i = 1; i <= countCandidates; i++) {
       const candidate = await instance.getCandidate(sessionID, i);
-      const candidateName = candidate[1].replace(/^\[|]$/g, ''); // Remove surrounding brackets
-      const partyName = candidate[2].replace(/^\[|]$/g, ''); // Remove surrounding brackets
+      const candidateName = candidate[1];
+      const partyName = candidate[2];
       const totalVotes = candidate[3];
 
       const row = document.createElement("tr");

@@ -12,6 +12,7 @@ contract Voting {
         address admin;
         uint256 votingStart;
         uint256 votingEnd;
+        string voteName;
         mapping(uint => Candidate) candidates;
         mapping(address => bool) voters;
         mapping(address => bool) registeredVoters;
@@ -32,6 +33,7 @@ contract Voting {
     event RegistrationRequested(uint indexed sessionID, address indexed voter);
 
     function createSession(
+        string memory _voteName,
         uint256 _startDate,
         uint256 _endDate,
         string[] memory candidateNames,
@@ -49,6 +51,7 @@ contract Voting {
 
         sessionCount++;
         VotingSession storage session = votingSessions[sessionCount];
+        session.voteName = _voteName;
         session.admin = msg.sender;
         session.votingStart = _startDate;
         session.votingEnd = _endDate;
@@ -143,5 +146,13 @@ contract Voting {
 
     function getAdmin(uint sessionID) public view returns (address) {
         return votingSessions[sessionID].admin;
+    }
+
+    function getSessionName(uint sessionID) public view returns (string memory) {
+        return votingSessions[sessionID].voteName;
+    }
+
+    function getCurrentDate() public view returns (uint256) {
+        return block.timestamp;
     }
 }

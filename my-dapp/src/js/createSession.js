@@ -38,6 +38,7 @@ window.App = {
   createSession: async function(event) {
     event.preventDefault();
 
+    const voteName = document.getElementById("voteName").value;
     const candidateNames = document.getElementById("candidateNames").value.split(",");
     const candidateParties = document.getElementById("candidateParties").value.split(",");
     const voters = document.getElementById("voters").value.split(",");
@@ -46,7 +47,7 @@ window.App = {
 
     const instance = await App.contracts.Voting.deployed();
     try {
-      const result = await instance.createSession(startDate, endDate, candidateNames, candidateParties, voters);
+      const result = await instance.createSession(voteName, startDate, endDate, candidateNames, candidateParties, voters);
       console.log("Session created:", result);
       alert("Voting session created successfully!");
     } catch (err) {

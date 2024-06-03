@@ -23,7 +23,7 @@ window.App = {
     VotingContract.setProvider(App.web3Provider);
 
     App.account = (await window.web3.eth.getAccounts())[0];
-    document.getElementById("accountAddress").innerText = "Your Account: " + App.account;
+    document.getElementById("accountAddress").innerText = "Your Address: " + App.account;
 
     App.contracts = {};
     App.contracts.Voting = VotingContract;

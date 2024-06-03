@@ -24,7 +24,7 @@ window.App = {
     VotingContract.setProvider(App.web3Provider);
 
     App.account = (await window.web3.eth.getAccounts())[0];
-    document.getElementById("account").innerText = App.account;
+    document.getElementById("account").innerText = "Your Address: "+App.account;
 
     App.contracts = {};
     App.contracts.Voting = VotingContract;
@@ -45,9 +45,21 @@ window.App = {
     }
 
     const instance = await App.contracts.Voting.deployed();
+    const admin = await instance.getAdmin(sessionID);
+
+    if (admin === '0x0000000000000000000000000000000000000000') {
+      alert("Error Voting SessionID");
+      document.getElementById("sessionName").innerText = "";
+      document.getElementById("condition").innerText = "";
+      document.getElementById("admin").innerText = "";
+      document.getElementById("startDate").innerText = "";
+      document.getElementById("endDate").innerText = "";
+      document.getElementById("candidateRows").innerHTML = "";
+      return;
+    }
+
     const dates = await instance.getDates(sessionID);
     const countCandidates = await instance.getCountCandidates(sessionID);
-    const admin = await instance.getAdmin(sessionID);
     const sessionName = await instance.getSessionName(sessionID);
     const condition = await instance.getCondition(sessionID);
 
@@ -64,11 +76,11 @@ window.App = {
       status = "In Process";
     }
 
+    document.getElementById("sessionName").innerText = sessionName;
+    document.getElementById("condition").innerText = status;
     document.getElementById("admin").innerText = admin;
     document.getElementById("startDate").innerText = startDate.toString();
     document.getElementById("endDate").innerText = endDate.toString();
-    document.getElementById("sessionName").innerText = sessionName;
-    document.getElementById("condition").innerText = status;
 
     const candidatesTable = document.getElementById("candidateRows");
     candidatesTable.innerHTML = ""; // Clear existing candidates

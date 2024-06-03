@@ -20,14 +20,30 @@ form {
   border-radius: 10px;
   display: inline-block;
   margin-top: 20px;
-  text-align: center; /* 左对齐文本内容 */
+  text-align: left; /* 左对齐文本内容 */
+}
+f {
+  background-color: rgba(0, 0, 0, 0.9); /* 透明背景 */
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: left; /* 左对齐文本内容 */
+}
+f2 {
+  background-color: rgba(112, 112, 112, 0.9); /* 透明背景 */
+  padding: 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 20px;
+  text-align: left; /* 左对齐文本内容 */
 }
 
 label {
   display: block;
   margin-top: 10px;
   color: #ffcc00;
-  text-align: center;
+  text-align: left;
 }
 
 input[type="text"],
@@ -38,6 +54,7 @@ input[type="datetime-local"] {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  
 }
 
 button {

@@ -5,39 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Voting Page</title>
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #333333; /* 深灰色背景 */
+      color: #ffffff; /* 白色文字 */
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #444444; /* 深灰色背景 */
+    }
+
+    tr:hover {
+      background-color: #555555; /* 更深的灰色悬停效果 */
+    }
+  </style>
 </head>
 <body>
-  <div id="vote-container">
-    <h1>Vote</h1>
-    <div id="account"></div>
-    <div>
-      <label for="sessionID">Session ID:</label>
-      <input type="text" id="sessionID" name="sessionID" required>
-      <button id="loadSessionButton">Load Session</button>
+  <f>
+    <div id="vote-container">
+      <h1>Vote</h1>
+      <div>
+        <label id="account"></label>
+      </div>
+      <div>
+        <label for="sessionID">Session ID:</label>
+        <input type="text" id="sessionID" name="sessionID" required>
+        <button id="loadSessionButton">Load Session Information</button>
+      </div>
+      <div id="sessionDetails">
+        <p>Session Name: <span id="sessionName"></span></p>
+        <p>Status: <span id="condition"></span></p>
+        <p>Admin: <span id="admin"></span></p>
+        <p>Start Date: <span id="startDate"></span></p>
+        <p>End Date: <span id="endDate"></span></p>
+      </div>
+      <table id="candidates">
+        <thead>
+          <tr>
+            <th>Candidate Name</th>
+            <th>Party</th>
+            <th>Total Votes</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody id="candidateRows">
+          <!-- Candidates will be loaded here -->
+        </tbody>
+      </table>
+      <button id="voteButton">Vote</button>
     </div>
-    <div id="sessionDetails">
-      <p>Session Name: <span id="sessionName"></span></p>
-      <p>Status: <span id="condition"></span></p>
-      <p>Admin: <span id="admin"></span></p>
-      <p>Start Date: <span id="startDate"></span></p>
-      <p>End Date: <span id="endDate"></span></p>
-    </div>
-    <table id="candidates">
-      <thead>
-        <tr>
-          <th>Candidate Name</th>
-          <th>Party</th>
-          <th>Total Votes</th>
-          <th>Select</th>
-        </tr>
-      </thead>
-      <tbody id="candidateRows">
-        <!-- Candidates will be loaded here -->
-      </tbody>
-    </table>
-    <button id="voteButton">Vote</button>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
-  <script src="js/bundleVote.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.3.5/dist/web3.min.js"></script>
+    <script src="js/bundleVote.js"></script>
+  </f>
 </body>
 </html>

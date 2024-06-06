@@ -18,6 +18,12 @@ Install metamask
 ## Usage
 First,Add Ganache Network to MetaMask.
 
-      $ npm install -g common-readme
+In my-dapp directory,run:
+
+      $ truffle migrate
+
+then:
+
+      $ npm start
 
 

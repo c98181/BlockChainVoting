@@ -17,6 +17,7 @@ Install metamask
 
 ## Usage
 First,Add Ganache Network to MetaMask.
-$ npm install -g common-readme
+
+      $ npm install -g common-readme
 
 

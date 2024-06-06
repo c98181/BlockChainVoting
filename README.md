@@ -1,5 +1,5 @@
 # BlockChainVoting
-2024 Spring NYCU
+2024 Spring NYCU CRYPTO Final project
 
 ## Requirements
 Install node.js

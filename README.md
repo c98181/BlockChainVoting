@@ -21,6 +21,7 @@ First,in my-dapp directory,run:
       $ npm install
 
 Then open Ganache and click on "Quickstart",add Ganache Network to MetaMask.
+
 In my-dapp directory,run:
 
       $ truffle migrate

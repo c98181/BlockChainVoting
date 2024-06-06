@@ -4,16 +4,18 @@
 ## Requirements
 Install node.js
 
-download from https://nodejs.org/en
+-download from https://nodejs.org/en
 
 Install ganache
 
-download from https://archive.trufflesuite.com/ganache/
+-download from https://archive.trufflesuite.com/ganache/
 
 Install metamask
+-download from 
 
 
 
 ## Usage
+
 
 

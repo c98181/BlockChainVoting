@@ -21,7 +21,7 @@ Install metamask
       $cd my-dapp
       $npm install
 
-2.Open Ganache and click on "Quickstart",choose one address and copy its private key.
+2.Open Ganache and click on "Quickstart",choose a address and copy its private key.
 
 ![image](https://github.com/c98181/BlockChainVoting/assets/60998048/5278c4d6-a08d-4438-b9c2-f545977c2b63)
 

@@ -20,10 +20,14 @@ First,Add Ganache Network to MetaMask.
 
 In my-dapp directory,run:
 
+      $ npm install
+
       $ truffle migrate
 
 then:
 
       $ npm start
+
+
 
 

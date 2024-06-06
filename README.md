@@ -16,8 +16,8 @@ Install metamask
 
 
 ## Usage
-First,in my-dapp directory,run:
-
+First,From the root of this repo,run the following command:
+      $cd my-dapp
       $ npm install
 
 Then open Ganache and click on "Quickstart",add Ganache Network to MetaMask.
